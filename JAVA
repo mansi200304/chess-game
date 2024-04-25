@@ -1,0 +1,106 @@
+
+public class ChessGame {
+    private Board board; // Represents the chessboard
+    private Player[] players; // Array to store the players
+
+    public ChessGame() {
+        board = new Board();
+        players = new Player[2];
+        players[0] = new Player("Player 1", Color.WHITE);
+        players[1] = new Player("Player 2", Color.BLACK);
+    }
+
+    public void start() {
+        board.initialize(); // Initialize the chessboard
+
+        // Game loop
+        while (!isGameOver()) {
+            Player currentPlayer = getNextPlayer();
+            Move move = currentPlayer.makeMove(board); // Get move from the current player
+            board.makeMove(move); // Make the move on the chessboard
+            // Update the game state, check for checkmate, stalemate, etc.
+        }
+
+        // Game over, display winner or draw
+    }
+
+    private boolean isGameOver() {
+        // Check for game over conditions (checkmate, stalemate, etc.)
+       
+        return false; 
+    }
+
+    private Player getNextPlayer() {
+        // Determine the next player to make a move based on the game state
+      
+        return players[0]; 
+    }
+}
+
+
+public class Board {
+    private Piece[][] squares;
+
+    public Board() {
+        squares = new Piece[8][8];
+    }
+
+    public void initialize() {
+        // Initialize the chessboard with pieces in starting positions
+    }
+
+    public void makeMove(Move move) {
+        // Make the move on the chessboard
+    }
+}
+
+public abstract class Piece {
+    private Color color;
+
+    public Piece(Color color) {
+        this.color = color;
+    }
+
+    public abstract boolean isValidMove(Move move, Board board);
+    // Other methods and properties of a chess piece
+}
+
+public class Player {
+    private String name;
+    private Color color;
+
+    public Player(String name, Color color) {
+        this.name = name;
+        this.color = color;
+    }
+
+    public Move makeMove(Board board) {
+        // Get player's move input and validate it
+        return move; 
+    }
+}
+
+public class Move {
+    private Position from;
+    private Position to;
+
+    public Move(Position from, Position to) {
+        this.from = from;
+        this.to = to;
+    }
+}
+
+public class Position {
+    private int row;
+    private int column;
+
+    public Position(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+}
+
+// Enum for Piece Color
+public enum Color {
+    BLACK, WHITE
+}
